@@ -20,6 +20,8 @@ services:
       devtools: {}
 
   nginx:
+    ssl: true
+    sslExpose: false
     type: compose
     services:
       image: wpvipdev/nginx:1.19.2-2
@@ -42,7 +44,7 @@ services:
 <% wpVolumes() %>
 
     run_as_root:
-      - sh /dev-tools/setup.sh database root "http://<%= siteSlug %>.vipdev.lndo.site/" "<%= wpTitle %>" <% if ( multisite ) { %> <%= siteSlug %>.vipdev.lndo.site <% } %>
+      - sh /dev-tools/setup.sh database root "https://<%= siteSlug %>.vipdev.lndo.site/" "<%= wpTitle %>" <% if ( multisite ) { %> <%= siteSlug %>.vipdev.lndo.site <% } %>
 
   database:
     type: mariadb
